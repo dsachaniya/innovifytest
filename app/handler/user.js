@@ -124,6 +124,42 @@ class UserHandler {
                 callback.onError(error);
             });
     }
+    deleteUser(req, callback) {
+        let data = req.body;
+        req.checkParams('id', 'Invalid id provided').isMongoId();
+        req.getValidationResult()
+            .then(function (result) {
+                if (!result.isEmpty()) {
+                    let errorMessages = result.array().map(function (elem) {
+                        return elem.msg;
+                    });
+                    throw new ValidationError(errorMessages);
+                }
+                return new Promise(function (resolve, reject) {
+                    UserModel.findOne({ _id: req.params.id }, function (err, user) {
+                        if (err !== null) {
+                            reject(err);
+                        } else {
+                            if (!offer) {
+                                reject(new NotFoundError("user not found"));
+                            } else {
+                                resolve(user);
+                            }
+                        }
+                    })
+                });
+            })
+            .then((user) => {
+                user.remove();
+                return user;
+            })
+            .then((saved) => {
+                callback.onSuccess({}, "offer id " + saved.id + " deleted successfully ");
+            })
+            .catch((error) => {
+                callback.onError(error);
+            });
+    }
     getUserByFirstName(req, callback) {
         let data = req.body;
         req.getValidationResult()

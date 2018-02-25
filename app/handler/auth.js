@@ -68,6 +68,7 @@ class AuthHandler extends BaseAutoBindedClass {
     _provideTokenPayload(user) {
         return {
             id: user.id,
+            firstName: user.firstName,
             scope: 'default'
         };
     }

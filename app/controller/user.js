@@ -36,6 +36,11 @@ class UserController extends BaseController {
             }
         })(req, res, next);
     }  
+    remove(req, res, next) {
+        this.authenticate(req, res, next, (token, user) => {
+            this._offerHandler.deleteUser(req, this._responseManager.getDefaultResponseHandler(res));
+        });
+    }
     getUserByFirstName(req, res, next) {
         let responseManager = this._responseManager;
         this.authenticate(req, res, () => {
