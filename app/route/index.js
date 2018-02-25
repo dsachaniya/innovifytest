@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 6/7/17.
- */
+
 const express = require('express'),
     router = express.Router();
 // API V1

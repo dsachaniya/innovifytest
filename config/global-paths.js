@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 6/6/17.
- */
+
 // Set global config
 global.APP_MODEL_PATH = APP_ROOT_PATH + 'model/';
 global.APP_AUTH_STRATEGY = APP_ROOT_PATH + 'authstrategy/';

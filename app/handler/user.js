@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/9/17.
- */
+
 const UserModel = require(APP_MODEL_PATH + 'user').UserModel;
 const AlreadyExistsError = require(APP_ERROR_PATH + 'already-exists');
 const ValidationError = require(APP_ERROR_PATH + 'validation');
@@ -82,7 +80,80 @@ class UserHandler {
                 callback.onError(error);
             });
     }
+    updateUser(req,user, callback) {
+        let data = req.body;
+        let validator = this._validator;
+        req.checkParams('id', 'Invalid id provided').isMongoId();
+        req.getValidationResult()
+            .then(function (result) {
+                if (!result.isEmpty()) {
+                    let errorMessages = result.array().map(function (elem) {
+                        return elem.msg;
+                    });
+                    throw new ValidationError(errorMessages);
+                }
 
+                return new Promise(function (resolve, reject) {
+                    UserModel.findOne({ _id: req.params.id }, function (err, user) {
+                        if (err !== null) {
+                            reject(err);
+                        } else {
+                            if (!user) {
+                                reject(new NotFoundError("user not found"));
+                            } else {
+
+                                resolve(user);
+                            }
+                        }
+                    })
+                });
+            })
+            .then((user) => {
+                for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
+                        user[key] = data[key];
+                    }
+                }
+                user.save();
+                return user;
+            })
+            .then((saved) => {
+                callback.onSuccess(saved);
+            })
+            .catch((error) => {
+                callback.onError(error);
+            });
+    }
+    getUserByFirstName(req, callback) {
+        let data = req.body;
+        req.getValidationResult()
+        .then(function (result) {
+            if (!result.isEmpty()) {
+                let errorMessages = result.array().map(function (elem) {
+                    return elem.msg;
+                });
+                throw new ValidationError(errorMessages);
+            }
+            return new Promise(function (resolve, reject) {
+                UserModel.find({ firstName: { $regex: new RegExp(req.query.firstName.trim(), 'i') }  }).sort({ firstName: 1 }).exec(function (err, user) {
+                    if (err !== null) {
+                        reject(err);
+                    } else {
+                        if (!user) {
+                            reject(new NotFoundError("User not found"));
+                        } else {
+                            resolve(user);
+                        }
+                    }
+                })
+            });
+        }).then((users) => {
+            callback.onSuccess(users);
+        })
+        .catch((error) => {
+            callback.onError(error);
+        });
+    }
     createNewUser(req, callback) {
         let data = req.body;
         let validator = this._validator;

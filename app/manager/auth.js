@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/12/17.
- */
+
 const BaseAutoBindedClass = require(APP_BASE_PACKAGE_PATH + 'base-autobind');
 const JwtRsStrategy = require(APP_AUTH_STRATEGY + 'jwt-rs');
 const SecretKeyAuth = require(APP_AUTH_STRATEGY + 'secret-key');

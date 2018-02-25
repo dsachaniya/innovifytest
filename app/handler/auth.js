@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/9/17.
- */
+
 const RevokedToken = require(APP_MODEL_PATH + 'auth/revoked-token').RevokedTokenModel;
 const NotFoundError = require(APP_ERROR_PATH + 'invalid-payload');
 const BaseAutoBindedClass = require(APP_BASE_PACKAGE_PATH + 'base-autobind');
@@ -77,7 +75,7 @@ class AuthHandler extends BaseAutoBindedClass {
     _provideTokenOptions() {
         let config = global.config;
         return {
-            expiresIn: "10 days",
+            expiresIn: "15 minutes",
             audience: config.jwtOptions.audience,
             issuer: config.jwtOptions.issuer,
             algorithm: config.jwtOptions.algorithm

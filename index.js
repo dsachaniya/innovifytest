@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/8/17.
- */
+
 // Root path
 global.APP_ROOT_PATH = __dirname + '/app/';
 // Set other app paths

@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org/CROSP/blog-api-nodejs.git"
+    "url": "https://github.com/dsachaniya/bacancytest.git"
   },
   "keywords": [
     "Blog",
@@ -14,7 +14,7 @@
     "Example",
     "Mongoose"
   ],
-  "author": "Alexander CROSP Molochko",
+  "author": "Darshan Sachaniya",
   "license": "MIT",
   "dependencies": {
     "auto-bind": "^1.1.0",

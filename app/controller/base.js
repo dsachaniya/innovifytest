@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/9/17.
- */
+
 const ResponseManager = require(APP_MANAGER_PATH + 'response');
 const BaseAutoBindedClass = require(APP_BASE_PACKAGE_PATH + 'base-autobind');
 

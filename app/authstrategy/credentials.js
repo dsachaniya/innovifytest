@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/9/17.
- */
+
 
 const LocalAuthStrategy = require('passport-local').Strategy;
 const UserModel = require(APP_MODEL_PATH + 'user').UserModel;

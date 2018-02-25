@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/10/17.
- */
+
 const BaseAutoBindedClass = require(APP_BASE_PACKAGE_PATH + 'base-autobind');
 const expressValidator = require('express-validator');
 class ValidationManager extends BaseAutoBindedClass {

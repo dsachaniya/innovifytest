@@ -1,6 +1,3 @@
-/**
- * Created by crosp on 5/11/17.
- */
 
 'use strict';
 class BaseError extends Error {

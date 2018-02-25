@@ -1,9 +1,4 @@
-/**
- * Created by crosp on 5/12/17.
- */
-/**
- * Created by crosp on 5/9/17.
- */
+
 const BasePassportStrategy = require('passport-strategy');
 
 class BaseAuthStrategy extends BasePassportStrategy {

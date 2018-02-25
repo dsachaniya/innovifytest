@@ -1,6 +1,4 @@
-/**
- * Created by crosp on 5/9/17.
- */
+
 const BaseController = require(APP_CONTROLLER_PATH + 'base');
 const UserHandler = require(APP_HANDLER_PATH + 'user');
 
@@ -25,7 +23,25 @@ class UserController extends BaseController {
             }
         })(req, res, next);
     }
-
+    update(req, res, next) {   
+        console.log("update") 
+        let responseManager = this._responseManager;
+        let that = this;
+        this._passport.authenticate('jwt-rs-auth', {
+            onVerified: function (token, user) {
+                that._authHandler.updateUser(req, user, responseManager.getDefaultResponseHandler(res));
+            },
+            onFailure: function (error) {
+                responseManager.respondWithError(res, error.status || 401, error.message);
+            }
+        })(req, res, next);
+    }  
+    getUserByFirstName(req, res, next) {
+        let responseManager = this._responseManager;
+        this.authenticate(req, res, () => {
+            this._authHandler.getUserByFirstName(req, responseManager.getDefaultResponseHandler(res));
+        });
+    }
     create(req, res) {
         let responseManager = this._responseManager;
         this.authenticate(req, res, () => {
