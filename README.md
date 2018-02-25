@@ -1,6 +1,6 @@
-# Secure REST API using NodeJS + Express + JWT + Mongoose  
 
-# bacancytest
+
+# InnovifyTest
 install npm
 install mongodb
 make sure your mongodb is running on mongodb://127.0.0.1:27017
@@ -18,3 +18,5 @@ GET	         /users/search?firstName=""	user can search with firstname   secret 
 POST	     /users/create	            Create a new user                secret key
 POST	     /auth/     	            Create a new token               secret key
 DELETE	     /auth/:token    	        Remove token                     jwt token
+
+
